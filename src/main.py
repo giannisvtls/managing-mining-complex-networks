@@ -33,7 +33,10 @@ if __name__ == '__main__':
     def load_dataset(file_name):
         return nx.read_edgelist(file_name, create_using=nx.Graph(), nodetype=int)
 
-    dataset = load_dataset(f"{datasetTextFileName}.txt")
+
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(current_dir, f"{datasetTextFileName}.txt")
+    dataset = load_dataset(file_path)
 
     if isTripletsEnabled:
         triplets()
