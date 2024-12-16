@@ -4,6 +4,7 @@ from src.algorithms.triest import triest
 from src.algorithms.nodeIterator import nodeIterator
 from src.algorithms.doulion import doulion
 from src.algorithms.compactForwards import compactForwards
+import networkx as nx
 
 def print_hi():
     print("""___________ ________  ________ 
@@ -28,6 +29,11 @@ if __name__ == '__main__':
     isTriestEnabled = str_to_bool(os.getenv('IS_TRIEST_ENABLED', 'false'))
     isDoulionEnabled = str_to_bool(os.getenv('IS_DOULION_ENABLED', 'false'))
 
+    datasetTextFileName = os.getenv('DATASET_TEXT_FILE_NAME', 'email-Enron.txt')
+    def load_dataset(file_name):
+        return nx.read_edgelist(file_name, create_using=nx.Graph(), nodetype=int)
+
+    dataset = load_dataset(f"{datasetTextFileName}.txt")
 
     if isTripletsEnabled:
         triplets()
