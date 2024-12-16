@@ -1,5 +1,9 @@
 import os
-
+from src.algorithms.triplets import triplets
+from src.algorithms.triest import triest
+from src.algorithms.nodeIterator import nodeIterator
+from src.algorithms.doulion import doulion
+from src.algorithms.compactForwards import compactForwards
 
 def print_hi():
     print("""___________ ________  ________ 
@@ -24,9 +28,19 @@ if __name__ == '__main__':
     isTriestEnabled = str_to_bool(os.getenv('IS_TRIEST_ENABLED', 'false'))
     isDoulionEnabled = str_to_bool(os.getenv('IS_DOULION_ENABLED', 'false'))
 
-    print("\nSpecific Environment Variables:")
-    print(f"IS TRIPLETS ENABLED: {isTripletsEnabled}")
-    print(f"IS NODE ITERATOR ENABLED: {isNodeIteratorEnabled}")
-    print(f"IS COMPACT FORWARD ENABLED: {isCompactForward}")
-    print(f"IS TRIEST ENABLED: {isTriestEnabled}")
-    print(f"IS DOULION ENABLED: {isDoulionEnabled}")
+
+    if isTripletsEnabled:
+        triplets()
+
+    if isNodeIteratorEnabled:
+        nodeIterator()
+
+    if isCompactForward:
+        compactForwards()
+
+
+    if isDoulionEnabled:
+        doulion()
+
+    if isTriestEnabled:
+        triest()
