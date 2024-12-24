@@ -24,10 +24,10 @@ if __name__ == '__main__':
 
     # Read and convert environment variables
     isTripletsEnabled = str_to_bool(os.getenv('IS_TRIPLETS_ENABLED', 'false'))
-    isNodeIteratorEnabled = str_to_bool(os.getenv('IS_NODE_ITERATOR_ENABLED', 'false'))
-    isCompactForward = str_to_bool(os.getenv('IS_COMPACT_FORWARD', 'false'))
+    isNodeIteratorEnabled = str_to_bool(os.getenv('IS_NODE_ITERATOR_ENABLED', 'true'))
+    isCompactForward = str_to_bool(os.getenv('IS_COMPACT_FORWARD', 'true'))
     isTriestEnabled = str_to_bool(os.getenv('IS_TRIEST_ENABLED', 'false'))
-    isDoulionEnabled = str_to_bool(os.getenv('IS_DOULION_ENABLED', 'false'))
+    isDoulionEnabled = str_to_bool(os.getenv('IS_DOULION_ENABLED', 'true'))
 
     datasetTextFileName = os.getenv('DATASET_TEXT_FILE_NAME', 'email-Enron.txt')
     def load_dataset(file_name):
@@ -35,21 +35,22 @@ if __name__ == '__main__':
 
 
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(current_dir, f"{datasetTextFileName}.txt")
+    file_path = os.path.join(current_dir, f"{datasetTextFileName}")
     dataset = load_dataset(file_path)
+    graph = dataset # better name?
+    p = 0.5  # Probability of keeping an edge for the Doulion algorithm
 
     if isTripletsEnabled:
-        triplets()
+        triplets(graph)
 
     if isNodeIteratorEnabled:
-        nodeIterator()
+        nodeIterator(graph)
 
     if isCompactForward:
-        compactForwards()
-
+        compactForwards(graph)
 
     if isDoulionEnabled:
-        doulion()
+        doulion(graph, p, nodeIterator)  # Use node_iterator as the exact method
 
     if isTriestEnabled:
         triest()
