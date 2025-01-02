@@ -5,7 +5,7 @@ import networkx as nx
 #from src.algorithms.compactForwards import compactForwards
 
 def doulion(graph, p, triangle_count_method):
-    print('Running Doulion Algorithm...')
+    print('\nRunning Doulion Algorithm...')
     """
      DOULION algorithm for approximate triangle counting.
 
@@ -20,7 +20,7 @@ def doulion(graph, p, triangle_count_method):
     Returns:
     - Approximate triangle count.
     """
-    # Step 1: Sparsify the graph by keeping each edge with probability p
+    # Step 1: Sparsify the graph by keeping each edge with probability p.
     sparsified_graph = nx.Graph()
     sparsified_graph.add_nodes_from(graph.nodes())
     for u, v in graph.edges():
@@ -33,5 +33,5 @@ def doulion(graph, p, triangle_count_method):
     scaling_factor = 1 / (p ** 3)
     approximate_triangles = sparse_triangle_count * scaling_factor
 
-    print("Approximate Triangle Count (DOULION):", approximate_triangles)
+    print("Approximate Triangle Count (DOULION) for", str(triangle_count_method.__name__), ":", approximate_triangles)
     return approximate_triangles

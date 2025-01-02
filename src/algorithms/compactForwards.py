@@ -1,18 +1,23 @@
 import time
+import networkx as nx
 
 def compactForwards(graph):
-    print('\nRunning Compact Forwards Algorithm...')
+    print('Running Compact Forward Algorithm...')
     start_time = time.time()
-    triangles = 0
-    # Order nodes
-    nodes = sorted(graph.nodes())  #sort by node ID
-    node_index = {node: idx for idx, node in enumerate(nodes)}
 
-    for node in nodes:
-        neighbors = [n for n in graph.neighbors(node) if node_index[n] > node_index[node]]
-        for i in range(len(neighbors)):
-            for j in range(i + 1, len(neighbors)):
-                if graph.has_edge(neighbors[i], neighbors[j]):
+    # Sort nodes by degree and relabel them
+    nodes = sorted(graph.nodes(), key=lambda x: graph.degree(x))
+    node_map = {node: i for i, node in enumerate(nodes)}
+    graph = nx.relabel_nodes(graph, node_map)
+
+    triangles = 0
+    for u in graph.nodes():
+        # Get neighbors of u that come after u in the sorted order
+        neighbors = [v for v in graph.neighbors(u) if v > u]
+        # Count triangles involving the u node
+        for i, v in enumerate(neighbors):
+            for w in neighbors[i + 1:]:
+                if graph.has_edge(v, w):
                     triangles += 1
     print("--- %s seconds ---" % (time.time() - start_time))
     return triangles

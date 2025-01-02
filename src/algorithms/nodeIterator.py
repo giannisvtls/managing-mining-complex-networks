@@ -1,8 +1,9 @@
 from itertools import combinations
 import time
 
+
 def nodeIterator(graph):
-    print('\nRunning Node Iterator Algorithm...')
+    print('Running Node Iterator Algorithm...')
     start_time = time.time()
     triangles = 0
     for node in graph.nodes():
@@ -12,4 +13,6 @@ def nodeIterator(graph):
                 if graph.has_edge(neighbors[i], neighbors[j]):
                     triangles += 1
     print("--- %s seconds ---" % (time.time() - start_time))
-    return triangles / 3
+    triangles = int(triangles/3)
+
+    return triangles
