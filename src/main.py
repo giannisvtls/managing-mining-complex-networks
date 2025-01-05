@@ -59,10 +59,10 @@ if __name__ == '__main__':
 
         # Triest uses a stream, so we should initialize the stream of the input graph
         edge_stream = list(graph.edges())
-        triest_base = triest(M=11000) # initialize the memory we'll use
+        triest_base = triest(M=11000)
         triest_base.process_stream(edge_stream)
 
-        estimated_triangles = triest_base.get_triangle_count() #  the estimated number of triangles
+        estimated_triangles = triest_base.get_triangle_count()
         print("\nApproximate triangle count using the TRIEST-base:", estimated_triangles)
 
 
