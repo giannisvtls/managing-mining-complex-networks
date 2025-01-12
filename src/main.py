@@ -38,17 +38,23 @@ if __name__ == '__main__':
     triangles_nx = sum(nx.triangles(graph).values()) / 3
     print("\nActual triangles according to networkX:", triangles_nx, "\n")
 
+    results = []
+    results.append(("NetworkX", triangles_nx))
+
     if isTripletsEnabled:
         res_triplets = triplets(graph)
-        print('Trangle Count (triplets):', res_triplets, '\n')
+        print('Triangle Count (triplets):', res_triplets, '\n')
+        results.append(("Triplets", res_triplets))
 
     if isNodeIteratorEnabled:
         res_nodeiter = nodeIterator(graph)
         print("Triangle Count (node iterator):", res_nodeiter, '\n')
+        results.append(("Node Iterator", res_nodeiter))
 
     if isCompactForwardEnabled:
         res_compfw = compactForwards(graph)
         print("Triangle Count (compact forward):", res_compfw, '\n')
+        results.append(("Compact Forward", res_compfw))
 
     if isDoulionEnabled:
         doulionPropability = 0.4
@@ -68,3 +74,16 @@ if __name__ == '__main__':
 
         estimated_triangles = triest_base.get_triangle_count()
         print("\nApproximate triangle count using the TRIEST-base:", estimated_triangles)
+        results.append(("TRIEST-base", estimated_triangles))
+
+   # Print results table
+    print("\nResults Summary:")
+    print("+----------------------+------------+")
+    print(f"| {'Algorithm':<20} | {'Triangles':<10} |")
+    print("+----------------------+------------+")
+    for algorithm, triangles in results:
+        print(f"| {algorithm:<20} | {triangles:<10} |")
+    print("+----------------------+------------+")
+    
+    # Final print statement after all if conditions
+    print("All computations are complete.")    
