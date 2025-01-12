@@ -1,4 +1,5 @@
 import os
+from src.load_env import load_env
 from src.algorithms.triplets import triplets
 from src.algorithms.triest import triest
 from src.algorithms.nodeIterator import nodeIterator
@@ -7,6 +8,9 @@ from src.algorithms.compactForwards import compactForwards
 import networkx as nx
 
 if __name__ == '__main__':
+    # Load environment variables from .env file
+    load_env()
+    
     # String to boolean conversion
     def str_to_bool(env):
         return str(env).lower() in ('true', '1', 't', 'y', 'yes')
@@ -64,6 +68,3 @@ if __name__ == '__main__':
 
         estimated_triangles = triest_base.get_triangle_count()
         print("\nApproximate triangle count using the TRIEST-base:", estimated_triangles)
-
-
-
