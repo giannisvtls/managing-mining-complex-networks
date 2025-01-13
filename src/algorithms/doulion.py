@@ -1,7 +1,9 @@
 import random
 import networkx as nx
+import time
 
 def doulion(graph, p, triangle_count_method):
+   start_time = time.time()
    print('\nRunning Doulion Algorithm...')
 
    # Create sparsified graph by randomly sampling edges with probability p
@@ -20,6 +22,8 @@ def doulion(graph, p, triangle_count_method):
    # Each triangle requires 3 edges, each kept with probability p
    scaling_factor = 1 / (p ** 3)
    approximate_triangles = sparse_triangle_count * scaling_factor
-
-   print("Approximate Triangle Count (DOULION) for", str(triangle_count_method.__name__), ":", approximate_triangles)
+   
+#    print("Approximate Triangle Count (DOULION) for", str(triangle_count_method.__name__), ":", approximate_triangles)
+   print(f"--- {time.time() - start_time:.4f} seconds ---")
+   
    return approximate_triangles

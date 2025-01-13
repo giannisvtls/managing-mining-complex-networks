@@ -59,14 +59,11 @@ if __name__ == '__main__':
     if isDoulionEnabled:
         doulionPropability = 0.4
         if isCompactForwardEnabled:
-            doulion(graph, doulionPropability, compactForwards)
             results.append(("DOULION (p=0.4) Compact Forward",  doulion(graph, doulionPropability, compactForwards)))
         if isNodeIteratorEnabled:
-            doulion(graph, doulionPropability, nodeIterator)
-            results.append(("DOULION (p=0.4) Compact Forward",  doulion(graph, doulionPropability, nodeIterator)))
+            results.append(("DOULION (p=0.4) Node Iterator",  doulion(graph, doulionPropability, nodeIterator)))
         if isTripletsEnabled:
-            doulion(graph, doulionPropability, triplets)
-            results.append(("DOULION (p=0.4) Compact Forward",  doulion(graph, doulionPropability, triplets)))
+            results.append(("DOULION (p=0.4) Compact Triplets",  doulion(graph, doulionPropability, triplets)))
 
     if isTriestEnabled:
 
