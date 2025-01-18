@@ -24,6 +24,6 @@ def doulion(graph, p, triangle_count_method):
    approximate_triangles = sparse_triangle_count * scaling_factor
    
 #    print("Approximate Triangle Count (DOULION) for", str(triangle_count_method.__name__), ":", approximate_triangles)
-   print(f"--- {time.time() - start_time:.4f} seconds ---")
+   print(f"--- Total {time.time() - start_time:.4f} seconds to sparsify and calculate triangles---")
    
    return approximate_triangles
